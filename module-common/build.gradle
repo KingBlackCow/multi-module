@@ -32,3 +32,13 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.bootJar { enabled = false } // xxx.jar 파일로 생성 -> java -jar xxx.jar로 파일을 생성
+tasks.jar { enabled = true } // xxx-plain.jar 파일로 생성 -> Plain은 dependency를 가지지 않음 서버를 실행시키지 않고 jar 파일을 만듬
+
+// ./gradlew clean :module-api:buildNeeded --stacktrace --info --refresh-dependencies -x test
+
+// 현재 경로 에서 빌드 경로를 clean하고 module-api 를 빌드할 것 이고 Stacktrace는 로그를 쌓아서 보여달라
+// 디버깅단계 debug -> info -> warn -> error 여기서는 info이상의 디버깅레벨을 보여달라
+// -x test: 테스트코드를 스킵해달라
+// jar파일 실행방법 ex) Java -jar  module-api-0.0.1-SNAPSHOT.jar
