@@ -7,15 +7,19 @@ import dev.be.modulecommon.repository.MemberRepository;
 import dev.be.modulecommon.service.CommonDemoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class DemoService {
-    private final CommonDemoService commonDemoService;
+    @Value("${profile-name}")
+    private String name;
+
     private final MemberRepository memberRepository;
     public String save(){
+        System.out.println("name: " + name);
         Member member = memberRepository.save(Member.builder().name(Thread.currentThread().getName()).build());
         return member.getName();
     }

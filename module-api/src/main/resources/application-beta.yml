@@ -1,3 +1,4 @@
+profile-name: beta
 spring:
   main:
     allow-bean-definition-overriding: true
